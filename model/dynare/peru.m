@@ -357,7 +357,7 @@ M_.params( 8 ) = M_.params(7);
 pc_ss = M_.params( 8 );
 M_.params( 9 ) = 2;
 varphi = M_.params( 9 );
-M_.params( 10 ) = 2;
+M_.params( 10 ) = 2.5;
 alpha = M_.params( 10 );
 M_.params( 11 ) = 0.75;
 omega = M_.params( 11 );
@@ -432,7 +432,7 @@ steady;
 %
 M_.exo_det_length = 0;
 M_.Sigma_e(4, 4) = (0.1)^2;
-options_.irf = 100;
+options_.irf = 50;
 options_.noprint = 1;
 var_list_ = char('y','r','phic');
 info = stoch_simul(var_list_);
