@@ -32,9 +32,10 @@ parameters  beta
 			gamma_y
 			gamma_b; 
 
+beta= 0.99;
 psi= ;
 c_ss= ;
-eps= ;
+eps= 0.75;
 yd_ss= ;
 delta= ;
 pd_ss= ;
