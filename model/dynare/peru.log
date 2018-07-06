@@ -1,7 +1,7 @@
 Starting Dynare (version 4.5.5).
 Starting preprocessing of the model file ...
-Substitution of endo lags >= 2: added 6 auxiliary variables and equations.
-Found 33 equation(s).
+Substitution of endo lags >= 2: added 3 auxiliary variables and equations.
+Found 30 equation(s).
 Evaluating expressions...done
 Computing static model derivatives:
  - order 1
@@ -15,40 +15,37 @@ Preprocessing completed.
 EIGENVALUES:
          Modulus             Real        Imaginary
 
-       1.314e-16        1.314e-16                0
-       4.888e-16        4.888e-16                0
-        2.03e-08        4.156e-17         2.03e-08
-        2.03e-08        4.156e-17        -2.03e-08
-          0.1005          -0.1005                0
-          0.1983           0.1983                0
-           0.529            0.529                0
-             0.6             -0.6                0
-             0.6             -0.6                0
-             0.6             -0.6                0
+       6.451e-17       -6.451e-17                0
+       7.072e-16       -7.072e-16                0
+       1.112e-13       -1.112e-13                0
+       1.112e-13        1.112e-13                0
+         0.09948         -0.09948                0
+          0.4184           0.4184                0
             0.75             0.75                0
-          0.8229           0.8229                0
+          0.7735           0.7735                0
+          0.7946          -0.7946                0
              0.9              0.9                0
              0.9              0.9                0
+             0.9              0.9                0
+             0.9              0.9                0
+             0.9              0.9                0
+          0.9068           0.9068                0
                1                1                0
                1                1                0
                1                1                0
-           1.007            1.007                0
-           1.157             1.15           0.1244
-           1.157             1.15          -0.1244
-           1.252           -1.252                0
+           1.007           0.9022           0.4468
+           1.007           0.9022          -0.4468
+           1.145            1.139           0.1099
+           1.145            1.139          -0.1099
            1.337            1.337                0
-             1.5              1.5                0
-             1.5              1.5                0
-             1.5              1.5                0
-            2.13             2.13                0
-       9.796e+17       -9.796e+17                0
-       1.505e+19        1.505e+19                0
+       7.374e+17        7.374e+17                0
+       1.206e+20        1.206e+20                0
 
 
-There are 11 eigenvalue(s) larger than 1 in modulus 
+There are 7 eigenvalue(s) larger than 1 in modulus 
 for 7 forward-looking variable(s)
 
-The rank condition ISN'T verified!
+The rank condition is verified.
 
 
 STEADY-STATE RESULTS:

@@ -25,7 +25,7 @@ function [residual, g1, g2, g3] = peru_static(y, x, params)
 % Warning : this file is generated automatically by Dynare
 %           from model file (.mod)
 
-residual = zeros( 33, 1);
+residual = zeros( 30, 1);
 
 %
 % Model equations
@@ -34,8 +34,8 @@ residual = zeros( 33, 1);
 T26 = (1-params(2))/params(2)*(params(3)-params(3)*params(4))/(params(5)/params(6))*params(7)/params(8);
 T109 = params(14)*(params(8)/params(15))^(params(16)-1);
 T119 = params(14)*(params(8)*params(17)/params(15))^(params(16)-1);
-T157 = params(41)/(params(15)*params(38));
-T173 = 1/(params(15)*params(38));
+T158 = params(41)/(params(15)*params(38));
+T174 = 1/(params(15)*params(38));
 lhs =y(1)-y(2);
 rhs =T26*((y(3)-params(4)*y(3))/(1-params(4))-y(4))+(y(1)-y(2))*params(1)*(1-params(6));
 residual(1)= lhs-rhs;
@@ -79,10 +79,10 @@ lhs =y(16);
 rhs =y(17)+y(11)+y(16)-y(24)-y(17);
 residual(14)= lhs-rhs;
 lhs =y(8);
-rhs =(y(15)-y(2))*(-params(16))+((1-params(14))*(params(3)*y(3)+y(10)*params(18))+params(14)*params(19)*params(20)*(y(20)*params(16)+y(25)))/(params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)));
+rhs =(y(15)-y(2))*(-params(16))+((1-params(14))*(params(3)*y(3)+y(10)*params(18))+params(16)*params(14)*params(19)*params(20)*(y(20)*params(16)+y(25)))/(params(16)*params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)));
 residual(15)= lhs-rhs;
 lhs =y(8)+y(15)-y(2);
-rhs =T157*(y(2)+params(21)*(y(5)+y(18)-y(2))-y(18)-params(21)*(y(5)+y(18)-y(2))+params(22)*(y(18)+y(19)-y(2)))+T173*(y(3)*params(3)*params(8)+params(5)*params(7)*(y(1)-y(2)+y(22)));
+rhs =T158*(y(2)+params(21)*(y(5)+y(18)-y(2))-y(18)-params(21)*(y(5)+y(18)-y(2))+params(22)*(y(18)+y(19)-y(2)))+T174*(y(3)*params(3)*params(8)+params(5)*params(7)*(y(1)-y(2)+y(22)));
 residual(16)= lhs-rhs;
 lhs =y(19);
 rhs =y(17)+y(26)-y(17);
@@ -99,7 +99,7 @@ lhs =y(22);
 rhs =1/params(6)*(y(4)-y(4)*(1-params(6)));
 residual(22)= lhs-rhs;
 lhs =y(9);
-rhs =x(1)+y(9)*params(29)+y(9)*params(30);
+rhs =y(9)*params(29)+x(1);
 residual(23)= lhs-rhs;
 lhs =y(27);
 rhs =y(27)*params(31)+x(2);
@@ -108,10 +108,10 @@ lhs =y(24);
 rhs =y(24)*params(32)+x(3);
 residual(25)= lhs-rhs;
 lhs =y(25);
-rhs =x(4)+y(25)*params(33)+y(25)*params(35);
+rhs =y(25)*params(33)+x(4);
 residual(26)= lhs-rhs;
 lhs =y(26);
-rhs =x(5)+y(26)*params(34)+y(26)*params(36);
+rhs =y(26)*params(34)+x(5);
 residual(27)= lhs-rhs;
 lhs =y(28);
 rhs =y(18);
@@ -122,20 +122,11 @@ residual(29)= lhs-rhs;
 lhs =y(30);
 rhs =y(8);
 residual(30)= lhs-rhs;
-lhs =y(31);
-rhs =y(9);
-residual(31)= lhs-rhs;
-lhs =y(32);
-rhs =y(25);
-residual(32)= lhs-rhs;
-lhs =y(33);
-rhs =y(26);
-residual(33)= lhs-rhs;
 if ~isreal(residual)
   residual = real(residual)+imag(residual).^2;
 end
 if nargout >= 2,
-  g1 = zeros(33, 33);
+  g1 = zeros(30, 30);
 
   %
   % Jacobian matrix
@@ -189,20 +180,20 @@ if nargout >= 2,
   g1(14,11)=(-1);
   g1(14,24)=1;
   g1(15,2)=(-params(16));
-  g1(15,3)=(-(params(3)*(1-params(14))/(params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
+  g1(15,3)=(-(params(3)*(1-params(14))/(params(16)*params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
   g1(15,8)=1;
-  g1(15,10)=(-((1-params(14))*params(18)/(params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
+  g1(15,10)=(-((1-params(14))*params(18)/(params(16)*params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
   g1(15,15)=params(16);
-  g1(15,20)=(-(params(16)*params(14)*params(19)*params(20)/(params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
-  g1(15,25)=(-(params(14)*params(19)*params(20)/(params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
-  g1(16,1)=(-(T173*params(5)*params(7)));
-  g1(16,2)=(-1)-(T157*(1-params(21)-(-params(21))-params(22))+T173*(-(params(5)*params(7))));
-  g1(16,3)=(-(T173*params(3)*params(8)));
+  g1(15,20)=(-(params(16)*params(16)*params(14)*params(19)*params(20)/(params(16)*params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
+  g1(15,25)=(-(params(16)*params(14)*params(19)*params(20)/(params(16)*params(14)*params(19)*params(20)+(1-params(14))*(params(3)+params(18)))));
+  g1(16,1)=(-(T174*params(5)*params(7)));
+  g1(16,2)=(-1)-(T158*(1-params(21)-(-params(21))-params(22))+T174*(-(params(5)*params(7))));
+  g1(16,3)=(-(T174*params(3)*params(8)));
   g1(16,8)=1;
   g1(16,15)=1;
-  g1(16,18)=(-(T157*(params(22)+params(21)-1-params(21))));
-  g1(16,19)=(-(T157*params(22)));
-  g1(16,22)=(-(T173*params(5)*params(7)));
+  g1(16,18)=(-(T158*(params(22)+params(21)-1-params(21))));
+  g1(16,19)=(-(T158*params(22)));
+  g1(16,22)=(-(T174*params(5)*params(7)));
   g1(17,19)=1;
   g1(17,26)=(-1);
   g1(18,1)=params(23);
@@ -217,23 +208,17 @@ if nargout >= 2,
   g1(21,23)=1;
   g1(22,4)=(-(1/params(6)*(1-(1-params(6)))));
   g1(22,22)=1;
-  g1(23,9)=1-(params(29)+params(30));
+  g1(23,9)=1-params(29);
   g1(24,27)=1-params(31);
   g1(25,24)=1-params(32);
-  g1(26,25)=1-(params(33)+params(35));
-  g1(27,26)=1-(params(34)+params(36));
+  g1(26,25)=1-params(33);
+  g1(27,26)=1-params(34);
   g1(28,18)=(-1);
   g1(28,28)=1;
   g1(29,2)=(-1);
   g1(29,29)=1;
   g1(30,8)=(-1);
   g1(30,30)=1;
-  g1(31,9)=(-1);
-  g1(31,31)=1;
-  g1(32,25)=(-1);
-  g1(32,32)=1;
-  g1(33,26)=(-1);
-  g1(33,33)=1;
   if ~isreal(g1)
     g1 = real(g1)+2*imag(g1);
   end
@@ -242,13 +227,13 @@ if nargout >= 3,
   % Hessian matrix
   %
 
-  g2 = sparse([],[],[],33,1089);
+  g2 = sparse([],[],[],30,900);
 if nargout >= 4,
   %
   % Third order derivatives
   %
 
-  g3 = sparse([],[],[],33,35937);
+  g3 = sparse([],[],[],30,27000);
 end
 end
 end

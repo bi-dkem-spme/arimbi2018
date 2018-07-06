@@ -17,7 +17,7 @@ delta= 0.025;
 pd_ss= 1;
 pc_ss= pd_ss;
 varphi = 2;
-alpha = 0.1;
+alpha = 2;
 omega = 0.75;
 sigma_c = 6;
 eta = -1;
@@ -50,7 +50,7 @@ c_ss = y_ss*a*(1+(1-psi)/psi*(1-eps)*delta/(1-beta*(1-delta)))^(-1);
 d_ss = (a_ss*y_ss-c_ss)/delta;
 invd_ss = delta * d_ss;
 yd_ss = invd_ss;
-b_ss = 0.6;
+b_ss = 0.6*pc_ss*y_ss;
 
 model(linear);
 //1 consumption durable
@@ -96,7 +96,7 @@ phic = phi_h + p_h(-1) - pc(-1) - gamma*(pc_ss*ti_ss/p_h_ss)^(theta_h-1)*ti;
 ti = ti(-1) + phi_h - phistar_f - e + e(-1);
 
 //15 aggregate output
-y= -theta_h*(p_h-pc) + ((1-gamma)*(c_ss*c+inv_ss*inv)+(gamma*q_ss*ystar_ss)*(theta_h*q + ystar))/((1-gamma)*(c_ss+inv_ss)+ gamma*q_ss*ystar_ss);
+y= -theta_h*(p_h-pc) + ((1-gamma)*(c_ss*c+inv_ss*inv)+(gamma*q_ss*theta_h*ystar_ss)*(theta_h*q + ystar))/((1-gamma)*(c_ss+inv_ss)+ gamma*q_ss*theta_h*ystar_ss);
 
 //16 bop 
 p_h-pc+y = (b_ss/(p_h_ss*y_ss))*(rl_ss*(b(-1)+rl(-1)-pc) - b + pc - rl_ss*(b+rl-pc) + r_ss*(r+b-pc))  + (1/(p_h_ss*y_ss))*(pc_ss*c_ss*c + pd_ss*yd_ss*(pd-pc+yd));
@@ -122,7 +122,8 @@ yd = 1/delta*(d- (1-delta)*d(-1));
 
 //exogenous process
 //23
-a = rho1a*a(-1) + rho2a*a(-2)+ eps_a;
+//a = rho1a*a(-1) + rho2a*a(-2)+ eps_a;
+a = rho1a*a(-1) + eps_a;
 
 //24
 v = rho1v*v(-1) + eps_v;
@@ -131,18 +132,20 @@ v = rho1v*v(-1) + eps_v;
 phistar_f = rho1p*phistar_f(-1) + eps_phistar;
 
 //26
-ystar = rho1y*ystar(-1) + rho2y*ystar(-2) + eps_ystar;
+//ystar = rho1y*ystar(-1) + rho2y*ystar(-2) + eps_ystar;
+ystar = rho1y*ystar(-1) + eps_ystar;
 
 //27
-rstar = rho1r*rstar(-1) + rho2r*rstar(-2) + eps_rstar;
+//rstar = rho1r*rstar(-1) + rho2r*rstar(-2) + eps_rstar;
+rstar = rho1r*rstar(-1) + eps_rstar;
 
 end;
-
-//shocks;
-//var eps_a; stderr exp(sigma_a);
-//end;
-
 
 check;
 steady;
 
+shocks;
+var eps_ystar; stderr 0.1;
+end;
+
+stoch_simul( irf=100, noprint ) y r phic;
