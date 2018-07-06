@@ -2,7 +2,7 @@
 
 var pd pc c d rl l w y a inv phi_h vn vd cm_h p_h ti tic q tau; //
 
-varexo eps_a eps_v eps_phistar eps_ystar eps_rstar;
+varexo ;
 
 parameters  beta 
 			psi 
@@ -21,7 +21,6 @@ parameters  beta
 			ph_ss
 			theta_h
 			ti_ss
-            inv_ss
 			q_ss
 			ystar_ss
 			rl_ss
@@ -31,12 +30,7 @@ parameters  beta
 			gamma_r
 			gamma_phi
 			gamma_y
-			gamma_b
-            rho1a
-            rho1v
-            rho1p
-            rho1y
-            rho1r; 
+			gamma_b; 
 
 beta= 0.99;
 psi= 0.3;
@@ -55,7 +49,7 @@ gamma = ;
 p_h_ss = ;
 theta_h = ;
 ti_ss = ;
-inv_ss = ;
+
 q_ss = ;
 ystar_ss = ;
 rl_ss = ;
@@ -66,11 +60,7 @@ gamma_r =  ;
 gamma_phi = ;
 gamma_y = ;
 gamma_b = ; 
-rho1a = ;
-rho1v = ;
-rho1p = ;
-rho1y = ;
-rho1r = ;
+
 
 
 
@@ -130,7 +120,7 @@ r = rstar + e(+1) - e;
 rl = r + v + kappa*(b-pd-d) + tau;
 
 //19 macroprudential tool
-tau = (b(-1) - b(-2))*ttau;
+tau = (b(-1) - b(-2))*tau;
 
 //20 taylor rule
 r = gamma_r*r(-1) + (1-gamma_r)*( gamma_phi*(pc(-1)-pc(-2))  + gamma_y*(y(-1)-y(-2))  + gamma_b*(b(-1)-b(-2)));
@@ -157,6 +147,8 @@ ystar = rho1y*ystar(-1) + rho2y*ystar(-2) + eps_ystar;
 
 //27
 rstar = rho1r*rstar(-1) + rho2r*rstar(-2) + eps_rstar;
+
+
 
 end;
 
