@@ -7,7 +7,7 @@ varexo eps_a eps_v eps_phistar eps_ystar eps_rstar;
 parameters  beta psi c_ss eps yd_ss delta pd_ss pc_ss varphi alpha omega 
 			sigma_c eta gamma p_h_ss theta_h ti_ss inv_ss q_ss ystar_ss
 			rl_ss r_ss kappa ttau gamma_r gamma_phi gamma_y gamma_b
-            rho1a rho2a rho1v rho1p rho1y rho1r rho2y rho2r a_ss
+            rho1a rho2a rho1v rho1p rho1y rho1r rho2y rho2r a_ss a_const
             y_ss d_ss invd_ss b_ss; 
 
 beta= 0.9975;
@@ -17,10 +17,10 @@ delta= 0.025;
 pd_ss= 1;
 pc_ss= pd_ss;
 varphi = 2;
-alpha = 2.5;
+alpha = 0.5;
 omega = 0.75;
 sigma_c = 6;
-eta = -1;
+eta = 0.7;
 gamma = 0.15;
 p_h_ss = 1;
 theta_h = 0.8;
@@ -42,12 +42,14 @@ rho1y = 0.9;
 rho1r = 0.9;
 rho2y = 0.9;
 rho2r = 0.9;
-a_ss = 1-0.6*(1-beta)/beta;
-y_ss = ((psi)/(1-eps)*(sigma_c-1)/sigma_c*(1+(1-psi)/psi*(1-eps)*delta/(1-beta*(1-delta)))*1/a_ss)^(1/(varphi+1));
+a_ss = 1;
+a_const = 1-0.6*(1-beta)/beta;
+y_ss = ((psi)/(1-eps)*(sigma_c-1)/sigma_c*(1+(1-psi)/psi*(1-eps)*delta/(1-beta*(1-delta)))*1/a_const)^(1/(varphi+1));
 inv_ss = 0.2*y_ss;
-ystar_ss = y_ss*(1-(1-gamma)*a_ss)/gamma;
-c_ss = y_ss*a*(1+(1-psi)/psi*(1-eps)*delta/(1-beta*(1-delta)))^(-1);
-d_ss = (a_ss*y_ss-c_ss)/delta;
+ystar_ss = y_ss*(1-(1-gamma)*a_const)/gamma;
+c_ss = y_ss*a_const*(1+(1-psi)/psi*(1-eps)*delta/(1-beta*(1-delta)))^(-1);
+d_ss = c_ss*(1-psi)/psi*(1-eps)/(1-beta*(1-delta));
+//d_ss = (a_const*y_ss-c_ss)/delta;
 invd_ss = delta * d_ss;
 yd_ss = invd_ss;
 b_ss = 0.6*pc_ss*y_ss;
@@ -142,6 +144,10 @@ rstar = rho1r*rstar(-1) + eps_rstar;
 
 end;
 
+//initval;
+
+//end;
+
 check;
 steady;
 
@@ -149,4 +155,4 @@ shocks;
 var eps_ystar; stderr 0.1;
 end;
 
-stoch_simul( irf=50, noprint ) y r phic;
+stoch_simul( irf=200, noprint ) pd pc c d rl l w y a inv phi_h vn vd cm_h p_h ti e b r q tau yd phic;
